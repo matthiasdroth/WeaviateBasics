@@ -49,16 +49,14 @@ class WeaviateOps:
             "class": f"{class_name}",
             "properties": {"text": text, "vector": embedding}
         })
-        #
-        # assuming 'text' is your text and 'embedding' is its corresponding embedding
-object_data = {
-    "id": "your_object_id",  # replace with your object id
-    "class": "YourClassName",  # replace with your class name
-    "properties": {
-        "text": text,
-        "vector": embedding.tolist()  # convert the embedding to a list
-    }
-}
-
-# store the object in Weaviate
-client.data_object.create(object_data)
+        # assuming "text" is the relevant text and "embedding" that text's corresponding embedding
+        object_data = {
+            "id": object_id,
+            "class": class_name,
+            "properties": {
+                "text": text,
+                "vector": embedding.tolist()
+            }
+        }
+        # store the object in Weaviate
+        client.data_object.create(object_data)
